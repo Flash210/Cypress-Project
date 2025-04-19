@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+import loginPage from '../../support/pages/LoginPage'
 
 describe('Login to suace demo', () => {
 
@@ -7,17 +7,16 @@ describe('Login to suace demo', () => {
 
         cy.visit('https://www.saucedemo.com/')
         cy.goToWebsite()
-    
+
     })
 
-
+    const login = require('../../fixtures/login.json');
 
     it('Login with valid credentials', () => {
 
-        cy.get("#user-name").type("standard_user")
-        cy.get("#password").type("secret_sauce")
-
-        cy.get("input[type='submit']").click()
+        loginPage.fillUsername(login.valid_name)
+        loginPage.fillPassword(login.valid_password)
+        loginPage.clickLogin()
 
     })
 
