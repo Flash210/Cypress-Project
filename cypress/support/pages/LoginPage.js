@@ -1,3 +1,6 @@
+
+import basePage from '../../support/pages/BasePage'
+
 class LoginPage {
 
 
@@ -8,13 +11,16 @@ class LoginPage {
     }
 
     fillUsername(username) {
-        this.elements.text_username().type(username)
+        basePage.fillInput(this.elements.text_username(), username)
+        //this.elements.text_username().type(username)
     }
     fillPassword(password) {
-        this.elements.text_password().type(password)
+        basePage.fillInput(this.elements.text_password(), password)
+        //this.elements.text_password().type(password)
     }
     clickLogin() {
-        this.elements.btn_login().click()
+        basePage.clickOnElement(this.elements.btn_login())
+        // this.elements.btn_login().click()
     }
 
 
