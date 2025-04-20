@@ -1,45 +1,79 @@
-# GitHub Actions Workflow for Cypress UI Tests on Chrome
+# # GitHub Actions Workflow for Cypress UI Tests on Chrome
+
+# name: 01_ui_test
+
+# on:
+#   # Manual trigger
+#   workflow_dispatch:
+
+#   push:
+#     branches:
+#       - master
+      
+#   pull_request:
+#     branches:
+#       - master
+
+# jobs:
+#   ui_tests_chrome:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       # Step 1: Checkout code from GitHub repository
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       # Step 2: Set up Node.js
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '18' # Specify Node.js version
+
+#       # Step 3: Install Cypress dependencies
+#       - name: Install dependencies
+#         run: npm ci
+
+#       # Step 4: Run Cypress tests
+#       - name: Run Cypress tests
+#         run: npm run cy:tests:CHROME
+
+#       # Step 5: Upload test results as artifacts
+#       - name: Upload test results
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: cypress-test-results
+#           path: cypress/reports
 
 name: 01_ui_test
 
 on:
-  # Manual trigger
   workflow_dispatch:
-
   push:
-    branches:
-      - master
-      
+    branches: [master]
   pull_request:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   ui_tests_chrome:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from GitHub repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18' # Specify Node.js version
+          node-version: '18'
 
-      # Step 3: Install Cypress dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Step 4: Run Cypress tests
       - name: Run Cypress tests
         run: npm run cy:tests:CHROME
 
-      # Step 5: Upload test results as artifacts
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-test-results
           path: cypress/reports
